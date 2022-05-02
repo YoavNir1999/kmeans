@@ -16,7 +16,7 @@ fn main() {
         })
     }
 
-    let mut kmeans = Kmeans::new(data1,5);
+    let mut kmeans = Kmeans::new(data1,8);
     //println!("{:?}",kmeans.means);
 
     for _i in 0..20 {
