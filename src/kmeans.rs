@@ -52,7 +52,11 @@ impl Kmeans {
                 } 
             }*/
             
-            means.push(data[(i*data.len()/k)].clone());
+            means.push(Point {
+                r : i as f64 *(255.0/k as f64),
+                g : i as f64 *(255.0/k as f64),
+                b : i as f64 *(255.0/k as f64)
+            });
                     
         }
         return Kmeans {
