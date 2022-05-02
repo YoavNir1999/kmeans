@@ -4,7 +4,7 @@ use image::{GenericImageView};
 use hex::encode;
 
 fn main() {
-    let img = image::open("/Users/yoavnir/Documents/vs code/rust/work in progress/data_analysis/extract_colors/test1.jpg").unwrap();
+    let img = image::open("/Users/yoavnir/Documents/vs code/rust/work in progress/data_analysis/extract_colors/nice.jpg").unwrap();
     let pixels = img.pixels();
 
     let mut data1 : Vec<Point> = Vec::new();
@@ -16,7 +16,7 @@ fn main() {
         })
     }
 
-    let mut kmeans = Kmeans::new(data1,8);
+    let mut kmeans = Kmeans::new(data1,6);
     //println!("{:?}",kmeans.means);
 
     for _i in 0..20 {
@@ -34,14 +34,14 @@ fn main() {
         println!("{}",rgb_to_hex(&mean.point_to_pixel()));
     };
 
-    rbg_to_image(colors);
+    rgb_to_image(colors);
 }
 
 fn rgb_to_hex(point:&[u8]) -> String {
     return format!("#{}",encode(point))
 }
 
-fn rbg_to_image(colors:Vec<[u8;3]>) {
+fn rgb_to_image(colors:Vec<[u8;3]>) {
     let mut buffer : image::RgbImage = image::ImageBuffer::new(colors.len() as u32 * 100,500);
     let mut inc = 0;
     for idx in 0..colors.len() {
