@@ -4,7 +4,7 @@ use image::{GenericImageView};
 use hex::encode;
 
 fn main() {
-    let img = image::open("/Users/yoavnir/Documents/vs code/rust/work in progress/data_analysis/extract_colors/annegret-kammer-sGptUDSrMVU-unsplash.jpg").unwrap();
+    let img = image::open("/Users/yoavnir/Documents/vs code/rust/work in progress/data_analysis/extract_colors/test2.jpg").unwrap();
     let pixels = img.pixels();
 
     let mut data1 : Vec<Point> = Vec::new();
@@ -16,10 +16,10 @@ fn main() {
         })
     }
 
+    let mut kmeans = Kmeans::new(data1,5);
+    //println!("{:?}",kmeans.means);
 
-    let mut kmeans = Kmeans::new(data1,6);
-
-    for _i in 0..30 {
+    for _i in 0..25 {
         let diff = kmeans.new_means();
         println!("{}",diff);
         if diff < 20.0 {

@@ -22,10 +22,19 @@ impl Point {
     }
 }
 
+#[derive(Debug)]
 pub struct Kmeans {
     k:usize,
     data:Vec<Point>,
     pub means:Vec<Point>
+}
+
+impl PartialEq for Point {
+    fn eq(&self,other:&Point) -> bool {
+        return self.r==other.r &&
+        self.g==other.g &&
+        self.b==other.b
+    }
 }
 
 impl Kmeans {
@@ -42,7 +51,9 @@ impl Kmeans {
                     break
                 } 
             }*/
-            means.push(data[i*data.len()/k].clone())
+            
+            means.push(data[(i*data.len()/k)].clone());
+                    
         }
         return Kmeans {
             k:k,
@@ -50,6 +61,8 @@ impl Kmeans {
             means:means
         }
     }
+
+    
 
     pub fn new_means(&mut self) -> f64 {
         let mut diff = 0.0;
